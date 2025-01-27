@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "expo-infonline-library": ["../src/index"],
+      "expo-infonline-library/*": ["../src/*"]
+    }
+  }
+}

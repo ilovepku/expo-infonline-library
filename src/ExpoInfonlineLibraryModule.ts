@@ -1,15 +1,22 @@
-import { NativeModule, requireNativeModule } from 'expo';
+import { NativeModule, requireNativeModule } from "expo";
 
 import {
-  INFOnlineDebugLevel,
+  IOLDebugLevel,
+  IOLSessionType,
+  LogViewEventPayload,
+  SetCustomConsentPayload,
   StartIOMpSessionPayload,
-} from './ExpoInfonlineLibrary.types';
+} from "./ExpoInfonlineLibrary.types";
 
 declare class ExpoInfonlineLibraryModule extends NativeModule {
   startIOMpSession(payload: StartIOMpSessionPayload): Promise<void>;
-  terminateSession(sessionType: string): Promise<void>;
+  logViewEvent(payload: LogViewEventPayload): Promise<void>;
+  setCustomConsent(payload: SetCustomConsentPayload): Promise<void>;
+  sendLoggedEvents(sessionType: IOLSessionType): Promise<void>;
+  terminateSession(sessionType: IOLSessionType): Promise<void>;
+  mostRecentLogs(limit: number): Promise<string[]>;
   // iOS specific
-  setDebugLogLevel(level: INFOnlineDebugLevel): Promise<void>;
+  setDebugLogLevel(level: IOLDebugLevel): Promise<void>;
 }
 
 // This call loads the native module object from the JSI.
